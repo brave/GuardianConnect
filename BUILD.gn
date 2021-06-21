@@ -1,0 +1,19 @@
+# Copyright (c) 2021 The Brave Authors. All rights reserved.
+# This Source Code Form is subject to the terms of the Mozilla Public
+# License, v. 2.0. If a copy of the MPL was not distributed with this file,
+# You can obtain one at http://mozilla.org/MPL/2.0/.
+
+assert(is_mac)
+
+bundle_data("guardian_connect_framework_bundle_data") {
+  public_deps = [ ":build_guardian_connect_framework" ]
+
+  sources = [ "$root_out_dir/GuardianConnect.framework" ]
+  outputs = [ "{{bundle_contents_dir}}/Frameworks/{{source_file_part}}" ]
+}
+
+action("build_guardian_connect_framework") {
+  script="build_guardian_connect_framework.py"
+
+  outputs = [ "$root_out_dir/GuardianConnect.framework" ]
+}
